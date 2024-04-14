@@ -11,11 +11,11 @@ icon = pygame.image.load("img/cart1.jpg")
 pygame.display.set_icon(icon)
 target_image = pygame.image.load("img/target.png")
 
-target_width = 80
-target_height = 80
+TARGET_WIDTH = 80
+TARGET_HEIGHT = 80
 
-target_x = random.randint(0, SCREEN_WIDTH - target_width)
-target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+target_x = random.randint(0, SCREEN_WIDTH - TARGET_WIDTH)
+target_y = random.randint(0, SCREEN_HEIGHT - TARGET_HEIGHT)
 color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
 
 running = True
@@ -24,11 +24,12 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            break
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
-                target_x = random.randint(0, SCREEN_WIDTH - target_width)
-                target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+            if target_x <= mouse_x < target_x + TARGET_HEIGHT and target_y <= mouse_y < target_y + TARGET_HEIGHT:
+                target_x = random.randint(0, SCREEN_WIDTH - TARGET_WIDTH)
+                target_y = random.randint(0, SCREEN_HEIGHT - TARGET_HEIGHT)
     screen.blit(target_image, (target_x, target_y))
     pygame.display.update()
 
